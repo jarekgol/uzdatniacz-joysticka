@@ -1,68 +1,68 @@
-This program add user definied dead zones to all controller axis. It is a feeder for vJoy.
+ï»¿This program add user definied dead zones to all controller axis. It is a feeder for vJoy.
 To compile this you need vJoy SDK.
 To use this you have to install vJoy virtual controller. And copy SDK\lib\amd64\vJoyInterface.dll to you windows\System32 folder.
 https://sourceforge.net/projects/vjoystick/
 
 # Po co i dlaczego
 
-Próbowa³em zagraæ w Ace Combat 7 z u¿yciem joysticka Logitech Extreme 3D Pro (X3D) i okaza³o siê, ¿e po zdefiniowaniu kontrolera w pliku `.ini`, samolot ci¹gle skrêca w jedn¹ stronê, nawet gdy rêka spoczywa na dr¹¿ku.
+PrÃ³bowaÅ‚em zagraÄ‡ w Ace Combat 7 z uÅ¼yciem joysticka Logitech Extreme 3D Pro (X3D) i okazaÅ‚o siÄ™, Å¼e po zdefiniowaniu kontrolera w pliku `.ini`, samolot ciÄ…gle skrÄ™ca w jednÄ… stronÄ™, nawet gdy rÄ™ka spoczywa na drÄ…Å¼ku.
 
-Poniewa¿ kalibracja wbudowana w system Windows jest bardzo uboga, a sama gra nie oferuje ¿adnych zaawansowanych ustawieñ kalibracji joysticka, postanowi³em stworzyæ to narzêdzie.
+PoniewaÅ¼ kalibracja wbudowana w system Windows jest bardzo uboga, a sama gra nie oferuje Å¼adnych zaawansowanych ustawieÅ„ kalibracji joysticka, postanowiÅ‚em stworzyÄ‡ to narzÄ™dzie.
 
-Program odczytuje surowe dane z joysticka, filtruje dane analogowe, stosuj¹c **martw¹ strefê (dead zone)** zgodnie z ustawieniami zdefiniowanymi na pocz¹tku pliku. Nastêpnie przepisuje przeliczone dane osi oraz status przycisków do wirtualnego joysticka vJoy. Dziêki temu lekkie odchy³ki od œrodka nie powoduj¹ niechcianego ruchu samolotu.
+Program odczytuje surowe dane z joysticka, filtruje dane analogowe, stosujÄ…c **martwÄ… strefÄ™ (dead zone)** zgodnie z ustawieniami zdefiniowanymi na poczÄ…tku pliku. NastÄ™pnie przepisuje przeliczone dane osi oraz status przyciskÃ³w do wirtualnego joysticka vJoy. DziÄ™ki temu lekkie odchyÅ‚ki od Å›rodka nie powodujÄ… niechcianego ruchu samolotu.
 
 # Kompilacja
 
-Potrzebne narzêdzia (wersje, których u¿ywa³em):
+Potrzebne narzÄ™dzia (wersje, ktÃ³rych uÅ¼ywaÅ‚em):
 * **Visual Studio Community Edition 2026** (VS)
-* **vJoy SDK** – biblioteki niezbêdne do komunikacji z wirtualnym joystickiem (np. vJoy218SDK-291116.zip).
-* **vJoySetup.exe** – program instalacyjny wirtualnego joysticka.
-* **Git** (opcjonalnie) – system kontroli wersji, umo¿liwiaj¹cy sklonowanie repozytorium i zapisywanie historii zmian.
+* **vJoy SDK** â€“ biblioteki niezbÄ™dne do komunikacji z wirtualnym joystickiem (np. vJoy218SDK-291116.zip).
+* **vJoySetup.exe** â€“ program instalacyjny wirtualnego joysticka.
+* **Git** (opcjonalnie) â€“ system kontroli wersji, umoÅ¼liwiajÄ…cy sklonowanie repozytorium i zapisywanie historii zmian.
 
-Zak³adam, ¿e masz zainstalowane powy¿sze narzêdzia i wiesz, gdzie wypakowano SDK. U mnie kompilacja dzia³a³a na œwie¿ej instalacji VS z domyœlnymi opcjami dla C++.
+ZakÅ‚adam, Å¼e masz zainstalowane powyÅ¼sze narzÄ™dzia i wiesz, gdzie wypakowano SDK. U mnie kompilacja dziaÅ‚aÅ‚a na Å›wieÅ¼ej instalacji VS z domyÅ›lnymi opcjami dla C++.
 
-### Pobieranie Ÿróde³
+### Pobieranie ÅºrÃ³deÅ‚
 
-S¹ dwie proste opcje, aby rozpocz¹æ:
+SÄ… dwie proste opcje, aby rozpoczÄ…Ä‡:
 
-A) **Przez Git Bash:** Utwórz katalog, wejdŸ do niego, sklonuj repozytorium (`git clone https://github.com/jarekgol/uzdatniacz-joysticka.git`). Nastêpnie Eksploratorem Windows wejdŸ g³êbiej i kliknij plik `joy2winmm.slnx` – to powinno otworzyæ projekt w Visual Studio.
-B) **Manualnie:** Utwórz nowy projekt konsolowy C++ w VS, a nastêpnie podmieñ treœæ g³ównego pliku na zawartoœæ `joy2winmm\joy2winmm.cpp`.
+A) **Przez Git Bash:** UtwÃ³rz katalog, wejdÅº do niego, sklonuj repozytorium (`git clone https://github.com/jarekgol/uzdatniacz-joysticka.git`). NastÄ™pnie Eksploratorem Windows wejdÅº gÅ‚Ä™biej i kliknij plik `joy2winmm.slnx` â€“ to powinno otworzyÄ‡ projekt w Visual Studio.
+B) **Manualnie:** UtwÃ³rz nowy projekt konsolowy C++ w VS, a nastÄ™pnie podmieÅ„ treÅ›Ä‡ gÅ‚Ã³wnego pliku na zawartoÅ›Ä‡ `joy2winmm\joy2winmm.cpp`.
 
-### Konfiguracja kompilatora (Jeœli wymagana)
+### Konfiguracja kompilatora (JeÅ›li wymagana)
 
-Ustawienie œcie¿ek do SDK vJoy w VS: Otwórz **Projekt -> W³aœciwoœci** (lub `Alt+F7`).
+Ustawienie Å›cieÅ¼ek do SDK vJoy w VS: OtwÃ³rz **Projekt -> WÅ‚aÅ›ciwoÅ›ci** (lub `Alt+F7`).
 
 * **Katalogi VC++:**
-    * **Katalogi plików nag³ówkowych:** Dodaj œcie¿kê do plików `.h` (np. `[Twój katalog]\SDK\inc`).
-    * **Katalogi bibliotek:** Dodaj œcie¿kê do plików `.lib` (np. `[Twój katalog]\SDK\lib\amd64`).
-* **Konsolidator -> Dane wejœciowe:**
-    * **Dodatkowe zale¿noœci:** Dodaj nazwy plików: `vJoyInterface.lib`.
+    * **Katalogi plikÃ³w nagÅ‚Ã³wkowych:** Dodaj Å›cieÅ¼kÄ™ do plikÃ³w `.h` (np. `[TwÃ³j katalog]\SDK\inc`).
+    * **Katalogi bibliotek:** Dodaj Å›cieÅ¼kÄ™ do plikÃ³w `.lib` (np. `[TwÃ³j katalog]\SDK\lib\amd64`).
+* **Konsolidator -> Dane wejÅ›ciowe:**
+    * **Dodatkowe zaleÅ¼noÅ›ci:** Dodaj nazwy plikÃ³w: `vJoyInterface.lib`.
 
-Teraz projekt powinien siê kompilowaæ.
+Teraz projekt powinien siÄ™ kompilowaÄ‡.
 
 # Uruchomienie
 
-1.  Upewnij siê, ¿e oryginalny joystick dzia³a. U¿yj systemowego narzêdzia `joy.cpl` lub przejdŸ do "Kontrolery gier". Zobacz, co siê zmienia po u¿yciu joysticka, zapamiêtaj wygl¹d okna lub zostaw je otwarte.
-2.  Uruchom program **`vjoyconf`** (Configure vJoy) i skonfiguruj wirtualny joystick tak, aby odpowiada³ orygina³owi (mo¿esz usun¹æ lub dodaæ osie, ale pamiêtaj o zaimplementowaniu nowych osi w kodzie Ÿród³owym).
-    * Dla X3D: Osi X, Y, Rz, Suwak (Slider), 12 przycisków (buttons), oraz Mini-joystick (POV hat) ustaw na **Continous 1**.
-3.  SprawdŸ w `joy.cpl`, czy wirtualny joystick jest widoczny i czy jego konfiguracja jest poprawna. Przed uruchomieniem programu nie bêdzie on reagowa³.
+1.  Upewnij siÄ™, Å¼e oryginalny joystick dziaÅ‚a. UÅ¼yj systemowego narzÄ™dzia `joy.cpl` lub przejdÅº do "Kontrolery gier". Zobacz, co siÄ™ zmienia po uÅ¼yciu joysticka, zapamiÄ™taj wyglÄ…d okna lub zostaw je otwarte.
+2.  Uruchom program **`vjoyconf`** (Configure vJoy) i skonfiguruj wirtualny joystick tak, aby odpowiadaÅ‚ oryginaÅ‚owi (moÅ¼esz usunÄ…Ä‡ lub dodaÄ‡ osie, ale pamiÄ™taj o zaimplementowaniu nowych osi w kodzie ÅºrÃ³dÅ‚owym).
+    * Dla X3D: Osi X, Y, Rz, Suwak (Slider), 12 przyciskÃ³w (buttons), oraz Mini-joystick (POV hat) ustaw na **Continous 1**.
+3.  SprawdÅº w `joy.cpl`, czy wirtualny joystick jest widoczny i czy jego konfiguracja jest poprawna. Przed uruchomieniem programu nie bÄ™dzie on reagowaÅ‚.
 4.  Uruchom program `joy2winmm.exe`.
-5.  Poruszaj joystickiem – wirtualny kontroler powinien zacz¹æ reagowaæ.
-6.  PrzeprowadŸ standardow¹ kalibracjê Windows.
-7.  W oknie konsoli bêd¹ widoczne dane z joysticka oraz informacje diagnostyczne o statusie martwej strefy. Jeœli w konsoli ci¹gle przybywa nowych linii, zwiêksz szerokoœæ terminala (np. Pasek tytu³u prawym, Settings, Startup, Launch size, Columns -> zwiêksz do 130).
+5.  Poruszaj joystickiem â€“ wirtualny kontroler powinien zaczÄ…Ä‡ reagowaÄ‡.
+6.  PrzeprowadÅº standardowÄ… kalibracjÄ™ Windows.
+7.  W oknie konsoli bÄ™dÄ… widoczne dane z joysticka oraz informacje diagnostyczne o statusie martwej strefy. JeÅ›li w konsoli ciÄ…gle przybywa nowych linii, zwiÄ™ksz szerokoÅ›Ä‡ terminala (np. Pasek tytuÅ‚u prawym, Settings, Startup, Launch size, Columns -> zwiÄ™ksz do 130).
 
 # Zamykanie
 
-Program mo¿na zamkn¹æ poprzez kombinacjê klawiszy **`CTRL+C`** lub przez zamkniêcie okna terminala. Program nie zapisuje ¿adnych ustawieñ na dysk i jest odporny na b³êdy.
+Program moÅ¼na zamknÄ…Ä‡ poprzez kombinacjÄ™ klawiszy **`CTRL+C`** lub przez zamkniÄ™cie okna terminala. Program nie zapisuje Å¼adnych ustawieÅ„ na dysk i jest odporny na bÅ‚Ä™dy.
 
 # Zmiany i Adaptacja
 
-Program ma domyœlnie wpisane wartoœci dla mojego joysticka. Poniewa¿ oœ Rz mia³a problem z dryfem tylko w jedn¹ stronê, jest filtrowana asymetrycznie (tylko dla wartoœci poni¿ej po³owy). Osie X i Y s¹ liczone symetrycznie (z obu stron martwej strefy). Suwak/przepustnica, przyciski i mini-joystick rozgl¹dania siê s¹ przepisywane bezpoœrednio.
+Program ma domyÅ›lnie wpisane wartoÅ›ci dla mojego joysticka. PoniewaÅ¼ oÅ› Rz miaÅ‚a problem z dryfem tylko w jednÄ… stronÄ™, jest filtrowana asymetrycznie (tylko dla wartoÅ›ci poniÅ¼ej poÅ‚owy). Osie X i Y sÄ… liczone symetrycznie (z obu stron martwej strefy). Suwak/przepustnica, przyciski i mini-joystick rozglÄ…dania siÄ™ sÄ… przepisywane bezpoÅ›rednio.
 
-* Jeœli chcesz zmieniæ ustawienia stref, zmieñ wartoœci **`const long`** na górze pliku `joy2winmm.cpp`.
-* Jeœli adaptujesz to do innego kontrolera z inn¹ iloœci¹ osi, musisz samodzielnie zaimplementowaæ ich obs³ugê. W katalogu SDK znajduje siê PDF z opisem biblioteki.
+* JeÅ›li chcesz zmieniÄ‡ ustawienia stref, zmieÅ„ wartoÅ›ci **`const long`** na gÃ³rze pliku `joy2winmm.cpp`.
+* JeÅ›li adaptujesz to do innego kontrolera z innÄ… iloÅ›ciÄ… osi, musisz samodzielnie zaimplementowaÄ‡ ich obsÅ‚ugÄ™. W katalogu SDK znajduje siÄ™ PDF z opisem biblioteki.
 
-Spory udzia³ w powstaniu kodu mia³o darmowe Gemini, wiêc polecam do wprowadzania zmian, zw³aszcza jeœli jesteœ bardziej graczem ni¿ programist¹.
+Spory udziaÅ‚ w powstaniu kodu miaÅ‚o darmowe Gemini, wiÄ™c polecam do wprowadzania zmian, zwÅ‚aszcza jeÅ›li jesteÅ› bardziej graczem niÅ¼ programistÄ….
 
 ---
 ---
@@ -91,9 +91,9 @@ The program reads raw data from the joystick, filters the analog data by applyin
 
 Required tools (versions I used):
 * **Visual Studio Community Edition 2026** (VS)
-* **vJoy SDK** – libraries necessary for communication with the virtual joystick (e.g., vJoy218SDK-291116.zip).
-* **vJoySetup.exe** – virtual joystick installation program.
-* **Git** (optional) – version control system, allowing you to clone the repository and save the history of changes.
+* **vJoy SDK** â€“ libraries necessary for communication with the virtual joystick (e.g., vJoy218SDK-291116.zip).
+* **vJoySetup.exe** â€“ virtual joystick installation program.
+* **Git** (optional) â€“ version control system, allowing you to clone the repository and save the history of changes.
 
 I assume you have the above tools installed and know where the SDK was extracted. Compilation worked for me on a fresh VS installation with default options for C++.
 
@@ -101,7 +101,7 @@ I assume you have the above tools installed and know where the SDK was extracted
 
 There are two simple options to get started:
 
-A) **Via Git Bash:** Create a directory, enter it, clone the repository (`git clone https://github.com/jarekgol/uzdatniacz-joysticka.git`). Then use Windows Explorer to go deeper and click the `joy2winmm.slnx` file – this should open the project in Visual Studio.
+A) **Via Git Bash:** Create a directory, enter it, clone the repository (`git clone https://github.com/jarekgol/uzdatniacz-joysticka.git`). Then use Windows Explorer to go deeper and click the `joy2winmm.slnx` file â€“ this should open the project in Visual Studio.
 B) **Manually:** Create a new C++ console project in VS, then replace the content of the main file with the content of `joy2winmm\joy2winmm.cpp`.
 
 ### Compiler Configuration (If Required)
@@ -123,7 +123,7 @@ The project should now compile.
     * For X3D: Set X, Y, Rz, Slider, 12 buttons, and the Mini-joystick (POV hat) to **Continous 1**.
 3.  Check `joy.cpl` to ensure the virtual joystick is visible and configured correctly. It will not respond before running the program.
 4.  Run the `joy2winmm.exe` program.
-5.  Move the joystick – the virtual controller should start responding.
+5.  Move the joystick â€“ the virtual controller should start responding.
 6.  Perform the standard Windows calibration.
 7.  The console window will display joystick data and diagnostic information about the dead zone status. If the console keeps receiving new lines, increase the terminal width (e.g., Title Bar Right-click, Settings, Startup, Launch size, Columns -> increase to 130).
 
