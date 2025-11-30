@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="joy2winmm/joy2winmm.vcxproj" Id="f16cca1a-e6b3-488c-8192-6372a5ca6d90" />
+</Solution>

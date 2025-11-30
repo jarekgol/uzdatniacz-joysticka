@@ -1,0 +1,27 @@
+# Folder kompilacji (zawsze ignorujemy)
+[Dd]ebug/
+[Rr]elease/
+x64/
+
+# Pliki wykonywalne i binarne
+*.exe
+*.dll
+*.obj
+*.lib
+*.pdb
+*.ilk
+
+# Pliki Visual Studio User/Cache (zmienne dla każdego)
+*.user
+*.suo
+.vs/
+*.opensdf
+*.sdf
+*.ipch
+*.log
+
+# Folder, który zawiera plik .slnx (nazwa może być niepoprawna)
+*.slnx.ide/
+
+# Ignorujemy również plik filtra, jeśli nie chcesz go śledzić
+*.vcxproj.filters
